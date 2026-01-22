@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CPU Scheduling Simulator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>CPU Scheduling Algorithms Simulator</h1>
+    <p class="subtitle">FCFS • SJF (non-pre) • SRTF • Priority (non-pre) • Round Robin</p>
+
+    <div class="input-section">
+      <h3>Add Process</h3>
+      <div class="form-grid">
+        <label>Process Name/ID: <input type="text" id="pid" placeholder="P1" value="P"></label>
+        <label>Arrival Time: <input type="number" id="arrival" min="0" value="0"></label>
+        <label>Burst Time: <input type="number" id="burst" min="1" value="8"></label>
+        <label>Priority: <input type="number" id="priority" min="1" value="1" title="Lower number = higher priority"></label>
+      </div>
+      <button id="addProcess">Add Process</button>
+    </div>
+
+    <div class="processes-section">
+      <h3>Processes <span id="processCount">(0)</span></h3>
+      <table id="processTable">
+        <thead>
+          <tr>
+            <th>PID</th>
+            <th>Arrival</th>
+            <th>Burst</th>
+            <th>Priority</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div class="controls">
+      <label>Time Quantum (for RR): 
+        <input type="number" id="quantum" min="1" value="4" style="width:80px;">
+      </label>
+      <div class="algo-buttons">
+        <button data-algo="fcfs">FCFS</button>
+        <button data-algo="sjf">SJF (non-pre)</button>
+        <button data-algo="srtf">SRTF</button>
+        <button data-algo="priority">Priority (non-pre)</button>
+        <button data-algo="rr">Round Robin</button>
+      </div>
+    </div>
+
+    <div id="result" class="result hidden">
+      <h2 id="algoName"></h2>
+      
+      <div class="gantt">
+        <h3>Gantt Chart</h3>
+        <div id="ganttChart"></div>
+        <div id="ganttTimeline"></div>
+      </div>
+
+      <table id="resultTable">
+        <thead>
+          <tr>
+            <th>Process</th>
+            <th>Arrival</th>
+            <th>Burst</th>
+            <th>Completion</th>
+            <th>Turnaround</th>
+            <th>Waiting</th>
+            <th>Response</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+      <div class="averages">
+        <p>Avg Turnaround Time: <strong id="avgTAT">–</strong></p>
+        <p>Avg Waiting Time: <strong id="avgWT">–</strong></p>
+        <p>Avg Response Time: <strong id="avgRT">–</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
